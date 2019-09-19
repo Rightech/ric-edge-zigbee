@@ -22,5 +22,8 @@
     "slugify": "^1.3.5",
     "ws": "^7.1.2",
     "zigbee-shepherd": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0"
   }
 }
