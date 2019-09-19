@@ -13,6 +13,10 @@
 ## run
 
 ```sh
+# build
+> nvm use v8.16
+> npm install
+
 # start
 > npm start
 
