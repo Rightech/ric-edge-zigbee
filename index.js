@@ -3,6 +3,8 @@
 const repl = require('./src/repl');
 
 async function main() {
+  console.log('init ...');
+  
   const zigbee = await require('./src/zigbee').init();
   const core = await require('./src/core').connect();
 

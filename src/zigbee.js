@@ -1,28 +1,41 @@
 
 const SERIAL_PATH = process.env.ZIGBEE_SERIAL_PATH || '/dev/ttyACM0';
 
-const zigbee = new (require('zigbee-shepherd'))(SERIAL_PATH, {
-  dbPath: './dev.db'
+const { Controller } = require('zigbee-herdsman')
+
+const zigbee = new Controller({
+  databasePath: './dev-v2.db',
+  serialPort: { path: SERIAL_PATH }
 });
 
-
-zigbee.on('ind', msg => {
-  zigbee.consoleLog && console.log(new Date(), 'msg', msg);
-});
-
-
-async function permitJoin(sec = 30) {
-  zigbee.permitJoin(sec, (err) => {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
 
 async function init() {
+  zigbee.on('deviceAnnounce', x => {
+    console.log('deviceAnnounce', x);
+  });
+
+  zigbee.on('deviceLeave', x => {
+    console.log('deviceLeave', x);
+  });
+
+  zigbee.on('deviceJoined', x => {
+    console.log('deviceJoined', x);
+  });
+
+  zigbee.on('adapterDisconnected', x => {
+    console.log('adapterDisconnected', x);
+  });
+
+  zigbee.on('deviceInterview', x => {
+    console.log('deviceInterview', x);
+  });
+
+  zigbee.on('message', x => {
+    console.log('message', x);
+  });
+
   await zigbee.start();
   console.log('zigbee start ok');
-  console.log('zigbee devices:', zigbee.list());
 
   return zigbee;
 }
@@ -30,5 +43,5 @@ async function init() {
 
 module.exports = {
   init,
-  permitJoin
+  //permitJoin
 };
