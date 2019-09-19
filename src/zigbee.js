@@ -11,7 +11,7 @@ zigbee.on('ind', msg => {
   zigbee.consoleLog && console.log(new Date(), 'msg', msg);
 });
 
-async function init() {
+async function init () {
   await zigbee.start();
   console.log('zigbee start ok');
   console.log('zigbee devices:', zigbee.list());
@@ -19,11 +19,11 @@ async function init() {
   return zigbee;
 }
 
-function deviceId(device) {
+function deviceId (device) {
   return slugify(device.modelId || device.ieeeAddr, { lower: true, replacement: '_' });
 }
 
-function findEndpoint(ieeeAddr, endpointId = 1) {
+function findEndpoint (ieeeAddr, endpointId = 1) {
   const device = zigbee.list().find(item => item.ieeeAddr === ieeeAddr);
   if (!device) {
     throw new Error('Device not found');
@@ -36,7 +36,7 @@ function findEndpoint(ieeeAddr, endpointId = 1) {
   return endpoint;
 }
 
-async function listDevices() {
+async function listDevices () {
   const devices = zigbee.list().reduce((acc, dev) => {
     const modelId = deviceId(dev);
     acc[modelId] = {
@@ -54,30 +54,29 @@ async function listDevices() {
   return { devices };
 }
 
-async function permitJoin({ seconds = 30, wait }) {
+async function permitJoin ({ seconds = 30, wait }) {
   seconds = +seconds;
 
   return zigbee.permitJoin(seconds);
 }
 
-async function readAttribute({ device, endpoint = 1, cluster, attribute }) {
+async function readAttribute ({ device, endpoint = 1, cluster, attribute }) {
   endpoint = findEndpoint(device, endpoint);
   return endpoint.read(cluster, attribute);
 }
 
-async function writeAttribute({ device, endpoint = 1, cluster, attribute, value }) {
+async function writeAttribute ({ device, endpoint = 1, cluster, attribute, value }) {
 
 }
 
-async function runCommand({ device, endpoint = 1, cluster, command, payload = {} }) {
+async function runCommand ({ device, endpoint = 1, cluster, command, payload = {} }) {
   endpoint = findEndpoint(device, endpoint);
   return endpoint.functional(cluster, command, payload);
 }
 
-
 module.exports = {
   init,
- 
+
   listDevices,
   permitJoin,
   readAttribute,

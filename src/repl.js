@@ -1,6 +1,5 @@
 
-
-function start(context = {}) {
+function start (context = {}) {
   const stubber = require('async-repl/stubber');
   const repl = require('repl').start({ prompt: '> ' });
 

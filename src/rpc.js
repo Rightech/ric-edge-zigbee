@@ -1,7 +1,7 @@
 
 const { listDevices, permitJoin, readAttribute, writeAttribute, runCommand } = require('./zigbee');
 
-function error(req, message, code = -32603) {
+function error (req, message, code = -32603) {
   return {
     jsonrpc: '2.0',
     id: req.id || null,
@@ -12,7 +12,7 @@ function error(req, message, code = -32603) {
   };
 }
 
-function ok(req, result = { ok: true }) {
+function ok (req, result = { ok: true }) {
   return {
     jsonrpc: '2.0',
     id: req.id || null,
@@ -25,10 +25,10 @@ const methods = {
   'zigbee-permit-join': permitJoin,
   'zigbee-read': readAttribute,
   'zigbee-write': writeAttribute,
-  'zigbee-command': runCommand,
-}
+  'zigbee-command': runCommand
+};
 
-async function dispatch(request) {
+async function dispatch (request) {
   try {
     request = JSON.parse(request.toString());
   } catch (err) {

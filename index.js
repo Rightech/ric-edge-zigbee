@@ -1,5 +1,5 @@
 
-async function main() {
+async function main () {
   const zigbee = await require('./src/zigbee').init();
   const core = await require('./src/core').connect();
 
