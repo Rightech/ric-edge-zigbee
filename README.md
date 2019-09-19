@@ -15,7 +15,7 @@
 ```sh
 # build
 > nvm use v8.16
-> npm install
+> npm install --only=production
 
 # start
 > npm start
