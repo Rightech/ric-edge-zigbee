@@ -1,0 +1,23 @@
+{
+  "name": "ric-edge-zigbee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rightech/ric-edge-zigbee.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Rightech/ric-edge-zigbee/issues"
+  },
+  "homepage": "https://github.com/Rightech/ric-edge-zigbee#readme",
+  "dependencies": {
+    "ws": "^7.1.2",
+    "zigbee-shepherd": "^0.3.0"
+  }
+}
