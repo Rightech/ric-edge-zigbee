@@ -11,8 +11,7 @@ zigbee.on('ind', msg => {
 });
 
 
-async function permitJoin() {
-  const sec = 60;
+async function permitJoin(sec = 30) {
   zigbee.permitJoin(sec, (err) => {
     if (err) {
       console.log(err);
@@ -21,21 +20,11 @@ async function permitJoin() {
 }
 
 async function init() {
-  return new Promise((resolve, reject) => {
-    zigbee.start(err => {
-      if (err) {
-        console.log('zigbee start err:', err);
-        reject(err);
-      }
-    });
+  await zigbee.start();
+  console.log('zigbee start ok');
+  console.log('zigbee devices:', zigbee.list());
 
-    zigbee.on('ready', () => {
-      console.log('zigbee start ok');
-      console.log('zigbee devices:', zigbee.list());
-
-      resolve();
-    });
-  })
+  return zigbee;
 }
 
 
