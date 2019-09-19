@@ -12,9 +12,11 @@ async function connect() {
   });
 
   return new Promise((resolve, reject) => {
+    ws.on('error', reject);
+    
     ws.on('open', () => {
       console.log('ws connect ok');
-      resolve();
+      resolve(ws);
     });
   });
 

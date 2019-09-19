@@ -7,7 +7,7 @@ const zigbee = new (require('zigbee-shepherd'))(SERIAL_PATH, {
 
 
 zigbee.on('ind', msg => {
-  console.log(new Date(), 'msg', msg);
+  zigbee.consoleLog && console.log(new Date(), 'msg', msg);
 });
 
 

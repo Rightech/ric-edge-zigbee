@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Rightech/ric-edge-zigbee#readme",
   "dependencies": {
+    "async-repl": "^0.4.0",
     "ws": "^7.1.2",
     "zigbee-shepherd": "^0.3.0"
   }
