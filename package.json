@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "repl": "node index.js --repl"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,17 @@
   "homepage": "https://github.com/Rightech/ric-edge-zigbee#readme",
   "dependencies": {
     "async-repl": "^0.4.0",
+    "slugify": "^1.3.5",
     "ws": "^7.1.2",
     "zigbee-herdsman": "^0.6.14",
     "zigbee-shepherd": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
