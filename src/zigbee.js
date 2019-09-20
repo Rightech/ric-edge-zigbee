@@ -1,4 +1,21 @@
 
+/**
+ * 
+ * Copyright 2019 Rightech IoT. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 const slugify = require('slugify');
 
 const SERIAL_PATH = process.env.ZIGBEE_SERIAL_PATH || '/dev/ttyACM0';
@@ -28,8 +45,7 @@ function findEndpoint(ieeeAddr, endpointId = 1) {
   if (!device) {
     throw new Error('Device not found');
   }
-  endpointId = +endpointId;
-  const endpoint = zigbee.find(device.ieeeAddr, endpointId);
+  const endpoint = zigbee.find(device.ieeeAddr, +endpointId);
   if (!endpoint) {
     throw new Error('Endpoint not found');
   }
@@ -38,40 +54,35 @@ function findEndpoint(ieeeAddr, endpointId = 1) {
 
 async function listDevices() {
   const devices = zigbee.list().reduce((acc, dev) => {
-    const modelId = deviceId(dev);
-    acc[modelId] = {
+    const id = deviceId(dev);
+    acc[id] = {
       addr: dev.ieeeAddr,
       type: dev.type,
       manufName: dev.manufName,
       modelId: dev.modelId
     };
     if (dev.type === 'EndDevice') {
-      acc[modelId].endpoints = dev.epList;
+      acc[id].endpoints = dev.epList;
     }
     return acc;
   }, {});
-
   return { devices };
 }
 
 async function permitJoin({ seconds = 30, wait }) {
-  seconds = +seconds;
-
-  return zigbee.permitJoin(seconds);
+  return zigbee.permitJoin(+seconds);
 }
 
 async function readAttribute({ device, endpoint = 1, cluster, attribute }) {
-  endpoint = findEndpoint(device, endpoint);
-  return endpoint.read(cluster, attribute);
+  return findEndpoint(device, endpoint).read(cluster, attribute);
 }
 
 async function writeAttribute({ device, endpoint = 1, cluster, attribute, value }) {
-
+  return findEndpoint(device, endpoint).read(cluster, attribute, value);
 }
 
 async function runCommand({ device, endpoint = 1, cluster, command, payload = {} }) {
-  endpoint = findEndpoint(device, endpoint);
-  return endpoint.functional(cluster, command, payload);
+  return findEndpoint(device, endpoint).functional(cluster, command, payload);
 }
 
 module.exports = {
