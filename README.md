@@ -19,9 +19,6 @@
 # start
 > npm start
 
-# start with repl
-> npm run repl
-
 # if access error
 > sudo adduser $(whoami) dialout
 > sudo chmod a+rw /dev/ttyACM0
