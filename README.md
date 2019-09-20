@@ -1,4 +1,4 @@
-# ric-edge-zigbee
+# RIC Edge: ZigBee
 
  - [Flashing CC2531 USB stick](https://www.zigbee2mqtt.io/getting_started/flashing_the_cc2531.html)
 
