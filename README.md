@@ -4,11 +4,10 @@
 
 ## env
 
-| name                      | description                                                | default                
-| ------------------------- | ---------------------------------------------------------- | --------------------------------- 
-| RIC_EDGE_URL              | WebSocket URL of RIC Edge core controller                  | ws://localhost:17080/zigbee                              
-| ZIGBEE_SERIAL_PATH        | System path of CC2531 USB stick                            | /dev/ttyACM0
-
+| `name`                    | `default`                                 | `description`
+| ------------------------- | ----------------------------------------- | --------------------------------- 
+| `RIC_EDGE_URL`            | `ws://localhost:17080/zigbee`             | WebSocket URL of RIC Edge core controller
+| `ZIGBEE_SERIAL_PATH`      | `/dev/ttyACM0`                            | System path of CC2531 USB stick
 
 ## run
 
